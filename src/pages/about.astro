@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sobre mí | Juan Carlos Otaiza · Learning Experience Designer">
+  <section class="py-12 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      {/* Columna Izquierda: Ilustración minimalista */}
+      <div class="md:col-span-5 flex justify-center">
+        <div class="w-64 h-64 rounded-2xl bg-gradient-to-tr from-accent/20 to-accentSoft flex items-center justify-center border border-accent/20 shadow-md relative overflow-hidden">
+          {/* Ilustración Vectorial Minimalista Inline de un Diseñador / Engranaje de Aprendizaje */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-32 h-32 text-accent animate-pulse">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          <div class="absolute bottom-4 text-center w-full">
+            <span class="text-xs font-semibold tracking-widest text-accent uppercase">LXD & TECH</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Columna Derecha: Texto */}
+      <div class="md:col-span-7 space-y-6">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-fg">
+          Optimización técnica y diseño instruccional.
+        </h1>
+        
+        <p class="text-fgMuted text-sm leading-relaxed max-w-lg">
+          Soy Ingeniero Químico reconvertido en **Learning Experience Designer (LXD)**. Mi enfoque consiste en tratar los ecosistemas de aprendizaje como sistemas de procesos: cada interacción de un estudiante, cada línea de CSS en Moodle o cada flujo en un simulador se diseña para minimizar la fricción y maximizar la efectividad.
+        </p>
+        
+        <p class="text-fgMuted text-sm leading-relaxed max-w-lg">
+          Especializado en el **sector de la hostelería** y la administración avanzada de **LMS (Moodle)**, diseño simuladores interactivos autogestionados y construyo campus virtuales ágiles, accesibles y estéticamente impecables.
+        </p>
+
+        <div class="pt-6 border-t border-muted">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-fgMuted mb-3">Tecnologías habituales</h2>
+          <div class="flex flex-wrap gap-2">
+            {['Articulate Rise', 'Articulate Storyline', 'Moodle (Avanzado)', 'H5P', 'HTML5 & Tailwind CSS', 'JavaScript'].map(tool => (
+              <span key={tool} class="px-3 py-1 bg-accentSoft text-accent text-xs font-bold rounded-full">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-wrap gap-4 items-center">
+          <a href="mailto:jcotaizac@gmail.com" class="px-6 py-3 bg-accent text-white dark:text-neutral-900 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity">
+            Enviar Email
+          </a>
+          <a href="https://github.com/ingjcotaizac-hub" target="_blank" rel="noopener" class="text-xs uppercase tracking-wider font-bold text-fgMuted hover:text-accent transition-colors">
+            Ver GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

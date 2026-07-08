@@ -1,0 +1,41 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+}
+
+const { url, title = "Visualización de documento PDF" } = Astro.props;
+---
+
+<div class="my-6 space-y-4">
+  <div class="w-full aspect-[4/3] bg-neutral-100 dark:bg-neutral-800 rounded-xl overflow-hidden shadow-inner border border-muted">
+    <object
+      data={url}
+      type="application/pdf"
+      class="w-full h-full"
+    >
+      <div class="flex flex-col items-center justify-center h-full p-6 text-center">
+        <span class="text-4xl mb-3">📄</span>
+        <p class="font-medium text-fg mb-2">Previsualización no disponible en tu navegador</p>
+        <p class="text-sm text-fgMuted mb-4">Puedes descargar el documento directamente usando el botón inferior.</p>
+        <a
+          href={url}
+          download
+          class="px-5 py-2.5 bg-accent hover:bg-accent/90 text-white rounded-lg transition-colors inline-flex items-center gap-2 font-medium"
+        >
+          Descargar PDF
+        </a>
+      </div>
+    </object>
+  </div>
+  
+  <div class="flex justify-end">
+    <a
+      href={url}
+      download
+      class="px-4 py-2 bg-muted hover:bg-muted/80 text-fg text-sm font-semibold rounded-lg border border-neutral-300 dark:border-neutral-700 transition-colors inline-flex items-center gap-2"
+    >
+      Descargar documento completo (PDF)
+    </a>
+  </div>
+</div>

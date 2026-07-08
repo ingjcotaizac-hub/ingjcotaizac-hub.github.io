@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorkGrid from '../components/WorkGrid.jsx';
+import { getCollection } from 'astro:content';
+
+const works = await getCollection('work');
+const sortedWorks = works.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Portafolio | Juan Carlos Otaiza · Learning Experience Designer">
+	<section class="py-12 border-b border-muted">
+		<h1 class="text-4xl md:text-5xl font-serif font-bold text-fg leading-tight">
+			Juan Carlos Otaiza
+		</h1>
+		<p class="text-md text-accent font-bold uppercase tracking-widest mt-2">
+			Learning Experience Designer · Moodle Expert
+		</p>
+		<p class="mt-4 text-fgMuted max-w-xl text-sm leading-relaxed">
+			Portfolio of learning experiences. Proyectos interactivos, simuladores y ecosistemas de aprendizaje enfocados en hotelería y diseño tecnológico.
+		</p>
+	</section>
+
+	<section class="py-8">
+		<WorkGrid works={sortedWorks} client:load />
+	</section>
+</Layout>

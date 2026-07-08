@@ -1,0 +1,19 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+}
+
+const { url, title = "H5P Content" } = Astro.props;
+---
+
+<div class="w-full aspect-video bg-neutral-900 rounded-xl overflow-hidden shadow-inner border border-neutral-800">
+  <iframe
+    src={url}
+    title={title}
+    class="w-full h-full border-0"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>

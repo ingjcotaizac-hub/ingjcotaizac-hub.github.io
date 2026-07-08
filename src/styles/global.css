@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #FDFBF7;
+    --bg-muted: #F3EFE6;
+    --fg-base: #2D2926;
+    --fg-muted: #635B53;
+    --accent-primary: #0d9488;
+    --accent-soft: #ccfbf1;
+  }
+  .dark {
+    --bg-base: #121212;
+    --bg-muted: #1e1e1e;
+    --fg-base: #FDFBF7;
+    --fg-muted: #A3A3A3;
+    --accent-primary: #14b8a6;
+    --accent-soft: #115e59;
+  }
+}
+
+body {
+  @apply bg-base text-fg font-sans antialiased transition-colors duration-300;
+}

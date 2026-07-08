@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const works = await getCollection('work');
+  return works.map(work => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+const { Content } = await work.render();
+
+// Obtener navegación anterior / siguiente
+const allWorks = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const currentIndex = allWorks.findIndex(w => w.slug === work.slug);
+const prevWork = currentIndex > 0 ? allWorks[currentIndex - 1] : null;
+const nextWork = currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1] : null;
+---
+
+<Layout title={`${work.data.title} | Juan Carlos Otaiza`} description={work.data.description}>
+  <div class="py-6">
+    <a href="/" class="text-xs text-accent font-semibold uppercase tracking-wider hover:underline flex items-center gap-1 mb-8">
+      ← Volver a la galería
+    </a>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* Columna Izquierda (70% en desktop): Título + Demo + Contenido */}
+      <div class="lg:col-span-8 space-y-6">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-fg leading-tight">
+          {work.data.title}
+        </h1>
+        
+        {/* Renderizado de la demo o contenido principal */}
+        <div class="prose prose-neutral dark:prose-invert max-w-none">
+          <Content />
+        </div>
+      </div>
+
+      {/* Columna Derecha (30% en desktop, sticky): Ficha técnica y contexto */}
+      <div class="lg:col-span-4 lg:sticky lg:top-8 bg-muted p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 space-y-6">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-fgMuted mb-4">
+            Ficha Técnica
+          </h2>
+          
+          <dl class="space-y-3 text-sm">
+            <div>
+              <dt class="text-xs text-fgMuted">Cliente</dt>
+              <dd class="font-semibold text-fg">{work.data.client}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-fgMuted">Año</dt>
+              <dd class="font-semibold text-fg">{work.data.year}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-fgMuted">Rol</dt>
+              <dd class="font-semibold text-fg">{work.data.role}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-fgMuted mb-2">
+            Herramientas
+          </h3>
+          <div class="flex flex-wrap gap-1.5">
+            {work.data.tools.map(tool => (
+              <span key={tool} className="px-2.5 py-1 bg-accentSoft text-accent text-[10px] font-bold rounded-full uppercase tracking-wider">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-fgMuted mb-2">
+            Sectores / Tags
+          </h3>
+          <div class="flex flex-wrap gap-1.5">
+            {work.data.tags.map(tag => (
+              <span key={tag} className="px-2.5 py-1 bg-neutral-200 dark:bg-neutral-800 text-fgMuted text-[10px] font-bold rounded-full uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-300 dark:border-neutral-700">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-fgMuted mb-2">
+            Resumen
+          </h3>
+          <p class="text-xs text-fgMuted leading-relaxed">
+            {work.data.description}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Navegación inferior entre piezas */}
+    <div class="flex justify-between items-center border-t border-muted mt-16 pt-8 text-sm">
+      {prevWork ? (
+        <a href={`/work/${prevWork.slug}`} class="text-fgMuted hover:text-accent font-medium flex flex-col items-start">
+          <span class="text-[10px] text-fgMuted uppercase tracking-wider font-semibold">Anterior</span>
+          <span class="font-serif font-bold text-fg group-hover:text-accent">&larr; {prevWork.data.title}</span>
+        </a>
+      ) : (
+        <div />
+      )}
+
+      {nextWork ? (
+        <a href={`/work/${nextWork.slug}`} class="text-fgMuted hover:text-accent font-medium flex flex-col items-end text-right">
+          <span class="text-[10px] text-fgMuted uppercase tracking-wider font-semibold">Siguiente</span>
+          <span class="font-serif font-bold text-fg group-hover:text-accent">{nextWork.data.title} &rarr;</span>
+        </a>
+      ) : (
+        <div />
+      )}
+    </div>
+  </div>
+</Layout>

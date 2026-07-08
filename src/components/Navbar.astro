@@ -1,0 +1,12 @@
+---
+import ThemeToggle from './ThemeToggle.jsx';
+---
+<header class="py-6 px-6 max-w-5xl mx-auto w-full flex justify-between items-center border-b border-muted">
+    <a href="/" class="font-serif font-bold text-xl hover:text-accent transition-colors">Juan Carlos Otaiza</a>
+    <nav class="hidden md:flex gap-6 items-center">
+        <a href="/" class="text-fgMuted hover:text-accent transition-colors">Galería</a>
+        <a href="/about" class="text-fgMuted hover:text-accent transition-colors">Sobre mí</a>
+        <a href="mailto:jcotaizac@gmail.com" class="px-4 py-2 bg-accent text-white dark:text-neutral-900 rounded-full text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">Contactar</a>
+        <ThemeToggle client:load />
+    </nav>
+</header>

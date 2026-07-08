@@ -1,0 +1,26 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+  aspectRatio?: 'video' | 'portrait' | 'square';
+}
+
+const { url, title = "Articulate Embed", aspectRatio = "video" } = Astro.props;
+
+const aspectClasses = {
+  video: "aspect-video",
+  portrait: "aspect-[3/4]",
+  square: "aspect-square"
+};
+---
+
+<div class={`w-full ${aspectClasses[aspectRatio]} bg-neutral-900 rounded-xl overflow-hidden shadow-inner border border-neutral-800`}>
+  <iframe
+    src={url}
+    title={title}
+    class="w-full h-full border-0"
+    allow="autoplay; fullscreen; keyboard"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>

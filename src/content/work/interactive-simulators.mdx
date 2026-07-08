@@ -1,0 +1,21 @@
+---
+title: "Simuladores Interactivos para Hostelería"
+year: 2025
+client: "Proyecto de Investigación y Desarrollo LMS"
+role: "Learning Experience Designer & Moodle Developer"
+tools: ["Moodle", "H5P", "Tailwind CSS", "JavaScript"]
+tags: ["Hostelería", "Simulación", "Gamificación"]
+thumbnail: "/images/work/simulators-thumb.jpg"
+demoType: "h5p"
+demoUrl: "https://h5p.org/h5p/embed/612292"
+featured: true
+order: 1
+description: "Serie de 7 simuladores prácticos autogestionados de toma de decisiones para entrenamiento del personal de recepción y pisos."
+---
+import H5PEmbed from '../../components/embeds/H5PEmbed.astro';
+
+Este proyecto aborda la brecha formativa operativa en el sector hostelero. Diseñé una experiencia de aprendizaje gamificada compuesta por 7 simuladores interactivos integrados en Moodle, donde el estudiante se enfrenta a escenarios reales del hotel (overbooking, quejas de clientes, coordinación de camareras de pisos).
+
+Cada simulador evalúa las competencias clave en tiempo real, proporcionando retroalimentación inmediata basada en las decisiones del usuario. Los resultados se registran de forma transparente en el libro de calificaciones de Moodle mediante API xAPI/H5P.
+
+<H5PEmbed url={frontmatter.demoUrl} title={frontmatter.title} />

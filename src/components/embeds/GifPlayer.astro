@@ -1,0 +1,15 @@
+---
+import GifPlayerReact from './GifPlayer.jsx';
+
+interface Props {
+  gifUrl: string;
+  placeholderUrl: string;
+  alt: string;
+}
+
+const { gifUrl, placeholderUrl, alt } = Astro.props;
+---
+
+<div class="my-6">
+  <GifPlayerReact gifUrl={gifUrl} placeholderUrl={placeholderUrl} alt={alt} client:load />
+</div>
